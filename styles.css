@@ -8,14 +8,32 @@ body {
 }
 
 /* Header Styles */
+
+.animated-heading {
+    animation: color-change 3s infinite, bounce 1s infinite;
+}
+
+/* Keyframes for color change */
+@keyframes color-change {
+    0% {
+        color: #ff6347; /* Tomato */
+    }
+    50% {
+        color: #4682b4; /* Steel Blue */
+    }
+    100% {
+        color: #ff6347;
+    }
+}
+
 nav {
     background-color: #1f1f1f;
     padding: 20px;
     display: flex;
+    position:sticky;
     justify-content: space-between;
     align-items: center;
-    position:sticky;
-    top: 0; 
+    top: 1; 
     z-index: 1; 
 }
 
