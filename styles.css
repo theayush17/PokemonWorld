@@ -24,6 +24,18 @@ h1 {
     color: yellow;
 }
 
+.gif-container {
+    width: 100px; /* Adjust as per the desired size */
+    height: 50px; /* Adjust the height accordingly */
+    background-image: url(img/pikachu-pokemon.gif); /* Replace with your GIF URL */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: calc(50% - 38.5%); /* To position it near the h1 */
+    top: 0;
+    z-index: 0; /* Keep it behind the text */
+}
 /* Sort Dropdown */
 .sort-section {
     color: yellow;
