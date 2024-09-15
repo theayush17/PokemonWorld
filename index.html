@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Pokemon.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -384,3 +385,388 @@
     <script src="script.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝗣𝗼𝗸𝗲𝗺𝗼𝗻 𝗪𝗼𝗿𝗹𝗱</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/pokemon-icon.png">
+</head>
+<body>
+    <nav>
+        <div>
+            <h1 class="animated-heading">Pokemon World</h1>
+        </div>
+        <div id="sort-popup">
+            <input type="text" id="search" placeholder="Search Pokemon">
+        </div>
+        <div> <div class="sort-section">
+            <label for="sort">Sort by Region:</label>
+            <select id="sort" onchange="sortPokemon()">
+                <option value="All">All</option>
+                <option value="kanto">Kanto</option>
+                <option value="johto">Johto</option>
+                <option value="hoenn">Hoenn</option>
+                <option value="sinnoh">Sinnoh</option>
+                <option value="unova">Unova</option>
+                <option value="kalos">Kalos</option>
+                <option value="alola">Alola</option>
+                <option value="galar">Galar</option>
+                <option value="paldea">Paldea</option>
+            </select>
+        </div>  
+    </nav>
+
+    <section id="pokemon-cards">
+        <div class="pokemon-card grass-type" 
+             data-region="kanto"
+             data-name="Bulbasaur" 
+             data-height="0.7m" 
+             data-weight="6.9kg" 
+             data-type="Grass/Poison"
+             data-moves="Tackle, Vine Whip, Razor Leaf, Solar Beam">
+            <img src="img/bulbasaur.png" alt="Bulbasaur">
+            <h3>Bulbasaur </h3>
+            <h4>#001 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card grass-type"
+             data-region="kanto"
+             data-name="Ivysaur" 
+             data-height="1m" 
+             data-weight="13kg" 
+             data-type="Grass/Poison" 
+             data-moves="Tackle, Vine Whip, Razor Leaf, Poison Powder, Sleep Powder, Sweet Scent, Synthesis, Solar Beam">
+            <img src="img/ivysaur.png" alt="Ivysaur">
+            <h3>Ivysaur </h3>
+            <h4>#002 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card grass-type" 
+             data-region="kanto"
+             data-name="Venusaur" 
+             data-height="2m" 
+             data-weight="100kg" 
+             data-type="Grass/Poison" 
+             data-moves= "Petal Dance, Growth, Growl, Leech Seed, Take Down, Vine Whip, Razor Leaf, Poison Powder, 
+                         Seed bomb, Sleep Powder, Worry Seed, Sweet Scent, Synthesis, Power Wip, Solar Beam">
+            <img src="img/venusaur.png" alt="Venusaur">
+            <h3>Venusaur </h3>
+            <h4>#003 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card fire-type" 
+             data-region="kanto"
+             data-name="charmander" 
+             data-height="0.6m" 
+             data-weight="8.5kg" 
+             data-type="Fire" 
+             data-moves="Growl, Scratch, Ember, Smokescreen, Slash, Flamethrower, Inferno">
+            <img src="img/charmander.png" alt="Charmander">
+            <h3>Charmander </h3>
+            <h4>#004 <br> FIRE</h4>
+        </div>
+        <div class="pokemon-card fire-type" data-region="kanto" data-name="Charmeleon" 
+        data-height="1.1m" 
+        data-weight="19.0kg" 
+        data-type="Fire" 
+        data-moves="Growl, Scratch, Ember, Smokescreen, Dragon-Breath, Slash, Flamethrower, Inferno, Flare Blitz">
+            <img src="img/charmeleon.png" alt="Charmeleon">
+            <h3>Charmeleon </h3>
+            <h4>#005 <br> FIRE</h4>
+        </div>
+        <div class="pokemon-card fire-type" data-region="kanto" data-name="Charizard" 
+        data-height="1.7m" 
+        data-weight="90.5kg" 
+        data-type="Fire/Flying" 
+        data-moves="Growl, Scratch, Ember, Heat-wave, Dragon-claw, Fire-spin, Smokescreen, Dragon-Breath, Slash, Flamethrower, Inferno, Flare Blitz">
+            <img src="img/charizard.png" alt="Charizard">
+            <h3>Charizard </h3>
+            <h4>#006 <br> FIRE/FLYING</h4>
+        </div>
+        <div class="pokemon-card water-type" data-region="kanto" data-name="Squirtle" 
+        data-height="0.5m" 
+        data-weight="9.0kg" 
+        data-type="Water" 
+        data-moves="Tackle, Tail-whip, Water-gun, Withdraw, Rapid-spin, Bite, Protect, Aqua-tail">
+            <img src="img/squirtle.png" alt="Squirtle">
+            <h3>Squirtle </h3>
+            <h4>#007 <br> WATER</h4>
+        </div>
+        <div class="pokemon-card water-type" data-region="kanto" data-name="Wartortle" 
+        data-height="1.0m" 
+        data-weight="22.5kg" 
+        data-type="Water" 
+        data-moves="Tackle, Tail-whip, Water-gun, Withdraw, Rapid-spin, Bite, Protect, Water-pulse, Aqua-tail">
+            <img src="img/wartortle.png" alt="Wartortle">
+            <h3>Wartortle </h3>
+            <h4>#008 <br> WATER</h4>
+        </div>
+        <div class="pokemon-card water-type" data-region="kanto" data-name="Blastoise" 
+        data-height="1.6m" 
+        data-weight="85.5kg" 
+        data-type="Water" 
+        data-moves="Tackle, Tail-whip, Water-gun, Withdraw, Rapid-spin, Bite, Protect, Hydro-pump, Rain-dance, Water-pulse, Aqua-tail">
+            <img src="img/blastoise.png" alt="Blastoise">
+            <h3>Blastoise </h3>
+            <h4>#009 <br> WATER</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Caterpie" 
+        data-height="0.3m" 
+        data-weight="2.9kg" 
+        data-type="Bug" 
+        data-moves="String-shot, Tackle, Bug-bite">
+            <img src="img/caterpie.png" alt="Caterpie">
+            <h3>Caterpie </h3>
+            <h4>#010 <br> BUG</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Metapod" 
+        data-height="0.7m" 
+        data-weight="9.9kg" 
+        data-type="Bug" 
+        data-moves="Harden">
+            <img src="img/metapod.png" alt="Metapod">
+            <h3>Metapod </h3>
+            <h4>#011 <br> BUG</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Butterfree" 
+        data-height="1.1m" 
+        data-weight="32.0kg" 
+        data-type="Bug/Flying" 
+        data-moves="Poison-powder,Sleep-powder,Bug-bite,Stun-spore,Air-slash,Rage-powder">
+            <img src="img/butterfree.png" alt="Butterfree">
+            <h3>Butterfree </h3>
+            <h4>#012 <br> BUG/FLYING</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Weedle" 
+        data-height="0.3m" 
+        data-weight="3.2kg" 
+        data-type="Bug/Poison" 
+        data-moves="Poison-sting">
+            <img src="img/weedle.png" alt="Weedle">
+            <h3>Weedle </h3>
+            <h4>#013 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Kakuna" 
+        data-height="0.6m" 
+        data-weight="10.0kg" 
+        data-type="Bug/Poison" 
+        data-moves="Harden">
+            <img src="img/kakuna.png" alt="Kakuna" >
+            <h3>Kakuna </h3>
+            <h4>#014 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto" data-name="Beedrill" 
+        data-height="1.0m" 
+        data-weight="29.5kg" 
+        data-type="Bug/Poison" 
+        data-moves="Bug-bite,Poison-sting,Toxic-spikes,Pin-missile,Agility,Endeavor,Furry-attack">
+            <img src="img/beedrill.png" alt="Beedrill">
+            <h3>Beedrill </h3>
+            <h4>#015 <br> BUG/FLYING</h4>
+        </div>
+        <div class="pokemon-card flying-type" data-region="kanto">
+            <img src="img/pidgey.png" alt="Pidgey">
+            <h3>Pidgey </h3>
+            <h4>#016 <br> NORMAL/FLYING</h4>
+        </div>
+        <div class="pokemon-card flying-type" data-region="kanto">
+            <img src="img/pidgeotto.png" alt="Pidgeotto">
+            <h3>Pidgeotto </h3>
+            <h4>#017 <br> NORMAL/FLYING</h4>
+        </div>
+        <div class="pokemon-card flying-type" data-region="kanto">
+            <img src="img/pidgeot.png" alt="Pidgeot">
+            <h3>Pidgeot </h3>
+            <h4>#018 <br> NORMAL/FLYING</h4>
+        </div>
+        <div class="pokemon-card Normal-type" data-region="kanto">
+            <img src="img/rattata.png" alt="Rattata">
+            <h3>Rattata </h3>
+            <h4>#019 <br> NORMAL</h4>
+        </div>
+        <div class="pokemon-card Normal-type" data-region="kanto">
+            <img src="img/raticate.png" alt="Raticate">
+            <h3>Raticate </h3>
+            <h4>#020 <br> NORMAL</h4>
+        </div>
+        <div class="pokemon-card flying-type" data-region="kanto">
+            <img src="img/spearow.png" alt="Spearow">
+            <h3>Spearow </h3>
+            <h4>#021 <br> FLYING</h4>
+        </div>
+        <div class="pokemon-card flying-type" data-region="kanto">
+            <img src="img/fearow.png" alt="Fearow">
+            <h3>Fearow </h3>
+            <h4>#022 <br> FLYING</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/ekans.png" alt="Ekans">
+            <h3>Ekans </h3>
+            <h4>#023 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/arbok.png" alt="Arbok">
+            <h3>Arbok </h3>
+            <h4>#024 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card electric-type" data-region="kanto">
+            <img src="img/pikachu.png" alt="Pikachu">
+            <h3>Pikachu </h3>
+            <h4>#025 <br> ELECTRIC</h4>
+        </div>
+        <div class="pokemon-card electric-type" data-region="kanto">
+            <img src="img/Raichu.png" alt="Raichu">
+            <h3>Raichu </h3>
+            <h4>#026 <br> ELECTRIC</h4>
+        </div>
+        <div class="pokemon-card ground-type" data-region="kanto">
+            <img src="img/sandshrew.png" alt="Sandshrew">
+            <h3>Sandshrew </h3>
+            <h4>#027 <br> GROUND</h4>
+        </div>
+        <div class="pokemon-card ground-type" data-region="kanto">
+            <img src="img/Sandslash.png" alt="Sandslash">
+            <h3>Sandslash </h3>
+            <h4>#028 <br> GROUND</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidoran-f.png" alt="Nidoran ♀">
+            <h3>Nidoran ♀ </h3>
+            <h4>#029 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidorina.png" alt="Nidorina">
+            <h3>Nidorina </h3>
+            <h4>#030 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidoqueen.png" alt="Nidoqueen">
+            <h3>Nidoqueen </h3>
+            <h4>#031 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidoran-m.png" alt="Nidoran ♂">
+            <h3>Nidoran ♂ </h3>
+            <h4>#032 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidorino.png" alt="Nidorino">
+            <h3>Nidorino </h3>
+            <h4>#033 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/nidoking.png" alt="Nidoking">
+            <h3>Nidoking </h3>
+            <h4>#034 <br> POISON</h4>
+        </div>
+        <div class="pokemon-card fairy-type" data-region="kanto">
+            <img src="img/clefairy.png" alt="Clefairy">
+            <h3>Clefairy </h3>
+            <h4>#035 <br> FAIRY/NORMAL</h4>
+        </div>
+        <div class="pokemon-card fairy-type" data-region="kanto">
+            <img src="img/clefable.png" alt="Clefable">
+            <h3>Clefable </h3>
+            <h4>#036 <br> FAIRY/NORMAL< /h4>
+        </div>
+        <div class="pokemon-card fire-type" data-region="kanto">
+            <img src="img/vulpix.png" alt="Vulpix">
+            <h3>Vulpix </h3>
+            <h4>#037 <br> FIRE</h4>
+        </div>
+        <div class="pokemon-card fire-type" data-region="kanto">
+            <img src="img/ninetales.png" alt="Ninetales">
+            <h3>Ninetales </h3>
+            <h4>#038 <br> FIRE</h4>
+        </div>
+        <div class="pokemon-card fairy-type" data-region="kanto">
+            <img src="img/jigglypuff.png" alt="Jigglypuff">
+            <h3>Jigglypuff </h3>
+            <h4>#039 <br> FAIRY/NORMAL</h4>
+        </div>
+        <div class="pokemon-card fairy-type" data-region="kanto">
+            <img src="img/wigglytuff.png" alt="Wigglytuff">
+            <h3>Wigglypuff </h3>
+            <h4>#040 <br> FAIRY/NORMAL</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/zubat.png" alt="Zubat">
+            <h3>Zubat </h3>
+            <h4>#041 <br> POISON/FLYING</h4>
+        </div>
+        <div class="pokemon-card poison-type" data-region="kanto">
+            <img src="img/golbat.png" alt="Golbat">
+            <h3>Golbat </h3>
+            <h4>#042 <br> POISON/FLYING</h4>
+        </div>
+        <div class="pokemon-card grass-type" data-region="kanto">
+            <img src="img/oddish.png" alt="Oddish">
+            <h3>Oddish </h3>
+            <h4>#043 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card grass-type" data-region="kanto">
+            <img src="img/gloom.png" alt="Gloom">
+            <h3>Gloom </h3>
+            <h4>#044 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card grass-type" data-region="kanto">
+            <img src="img/vileplume.png" alt="Vileplume">
+            <h3>Vileplume </h3>
+            <h4>#045 <br> GRASS/POISON</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto">
+            <img src="img/paras.png" alt="Paras">
+            <h3>Paras </h3>
+            <h4>#046 <br> BUG/GRASS</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto">
+            <img src="img/parasect.png" alt="Parasect">
+            <h3>Parasect </h3>
+            <h4>#047 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto">
+            <img src="img/venonat.png" alt="Venonat">
+            <h3>Venonat </h3>
+            <h4>#048 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto">
+            <img src="img/venomoth.png" alt="Venomoth">
+            <h3>Venomoth </h3>
+            <h4>#049 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card ground-type" data-region="kanto">
+            <img src="img/diglett.png" alt="Diglett">
+            <h3>Diglett </h3>
+            <h4>#050 <br> GROUND</h4>
+        </div>
+        <div class="pokemon-card bug-type" data-region="kanto">
+            <img src="img/dugtrio.png" alt="Dugtrio">
+            <h3>Dugtrio </h3>
+            <h4>#051 <br> GROUND/h4>
+        </div>
+        <div class="pokemon-card normal-type" data-region="kanto">
+            <img src="img/meowth.png" alt="Venomoth">
+            <h3>Venomoth </h3>
+            <h4>#049 <br> BUG/POISON</h4>
+        </div>
+        <div class="pokemon-card grass-type" data-region="johto">
+            <img src="img/chikorita.png" alt="Chikorita">
+            <h3>Chikorita </h3>
+            <h4>#152 <br> GRASS</h4>
+        </div>    
+        <div class="pokemon-card grass-type" data-region="hoenn">
+            <img src="img/treecko.png" alt="Treecko">
+            <h3>Treecko </h3>
+            <h4>#252 <br> GRASS</h4>
+        </div>    
+    </section>
+
+    <footer>
+        <p>© 2024 Pokémon World. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+>>>>>>> a6498e6f916856d324cf5c13db9d74a8090c9f6b:index.html
