@@ -105,8 +105,3 @@ function closePhotoOnEsc(event) {
 }
 // Attach the event listener to the whole document
 document.addEventListener('keydown', closePhotoOnEsc);
-
-
-
-
-

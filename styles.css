@@ -33,7 +33,7 @@ nav {
     position:sticky;
     justify-content: space-between;
     align-items: center;
-    top: 1; 
+    top: 1px; 
     z-index: 1; 
 }
 
