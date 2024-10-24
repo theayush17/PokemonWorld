@@ -264,6 +264,28 @@ select {
 .pokemon-card.fairy-type img {
     box-shadow: 0 0 15px pink; /* Green for Grass-type */
 }
+.pokemon-card.psychic-type img {
+    box-shadow: 0 0 15px rgb(158, 148, 120); /* Green for Grass-type */
+}
+.pokemon-card.rock-type img {
+    box-shadow: 0 0 15px rgb(153, 153, 153); /* Green for Grass-type */
+}
+.pokemon-card.ice-type img {
+    box-shadow: 0 0 15px rgba(173, 216, 230, 1); /* Green for Grass-type */
+}
+.pokemon-card.ghost-type img {
+    box-shadow: 0 0 15px rgba(72, 61, 139, 1); /* Green for Grass-type */
+}
+.pokemon-card.dragon-type img {
+    box-shadow: 0 0 15px rgb(188, 65, 4); /* Green for Grass-type */
+}
+.pokemon-card.dark-type img {
+    box-shadow: 0 0 15px rgb(42, 34, 104); /* Green for Grass-type */
+}
+.pokemon-card.steel-type img {
+    box-shadow: 0 0 15px rgb(144, 150, 152); /* Green for Grass-type */
+}
+
 
 /* Footer Styles */
 footer {
