@@ -171,17 +171,21 @@ function createPokemonCard(pokemon) {
     card.dataset.moves = pokemon.moves.slice(0, 5).map(m => m.move.name).join(', ');
     card.dataset.abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
     card.dataset.stats = pokemon.stats.map(s => `${s.stat.name}: ${s.base_stat}`).join(', ');
-    const gridImage = pokemon.sprites.front_default || (pokemon.sprites.other && pokemon.sprites.other['official-artwork'] ? pokemon.sprites.other['official-artwork'].front_default : null) || 'img/pokemon-icon.png';
+    const homeImg = (pokemon.sprites.other && pokemon.sprites.other.home) ? pokemon.sprites.other.home.front_default : null;
+    const artImg = (pokemon.sprites.other && pokemon.sprites.other['official-artwork']) ? pokemon.sprites.other['official-artwork'].front_default : null;
+    const gridImage = homeImg || artImg || pokemon.sprites.front_default || 'img/pokemon-icon.png';
     // Use higher-res artwork for popup if available, otherwise fall back to grid image
-    card.dataset.image = (pokemon.sprites.other && pokemon.sprites.other['official-artwork'] ? pokemon.sprites.other['official-artwork'].front_default : null) || gridImage;
+    card.dataset.image = homeImg || artImg || gridImage;
     const cry = pokemon.cries.latest ? pokemon.cries.latest : '';
     card.dataset.cry = cry;
     card.dataset.evolutionChain = pokemon.species.url;
-    const shinyImage = pokemon.sprites.other['official-artwork'].front_shiny ? pokemon.sprites.other['official-artwork'].front_shiny : image;
+    const homeShiny = (pokemon.sprites.other && pokemon.sprites.other.home) ? pokemon.sprites.other.home.front_shiny : null;
+    const artShiny = (pokemon.sprites.other && pokemon.sprites.other['official-artwork']) ? pokemon.sprites.other['official-artwork'].front_shiny : null;
+    const shinyImage = homeShiny || artShiny || card.dataset.image;
     card.dataset.shinyImage = shinyImage;
 
     card.innerHTML = `
-        <div class="card-image"><img loading="lazy" src="${gridImage}" alt="${pokemon.name}"></div>
+        <div class="card-image"><img loading="lazy" decoding="async" src="${gridImage}" alt="${pokemon.name}"></div>
         <h3>${pokemon.name}</h3>
         <h4>#${String(pokemon.id).padStart(3, '0')} <br> ${card.dataset.type.toUpperCase()}</h4>
     `;
