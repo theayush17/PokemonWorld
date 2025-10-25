@@ -8,6 +8,9 @@ const applyFiltersBtn = document.getElementById('apply-filters');
 const clearFiltersBtn = document.getElementById('clear-filters-btn');
 
 let allPokemonData = [];
+let nextPageUrl = 'https://pokeapi.co/api/v2/pokemon?limit=40';
+let isLoading = false;
+let reachedEnd = false;
 const backToTopBtn = document.getElementById('back-to-top');
 let activeRegions = new Set();
 let activeTypes = new Set();
@@ -16,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchPokemonData();
     setupFilterUI();
     setupBackToTop();
+    setupInfiniteScroll();
 });
 
 function setupFilterUI() {
@@ -123,27 +127,9 @@ function regionFromId(id) {
 }
 
 async function fetchPokemonData() {
-    try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
-        const data = await response.json();
-
-        const batchSize = 50;
-        for (let i = 0; i < data.results.length; i += batchSize) {
-            const batch = data.results.slice(i, i + batchSize);
-            const details = await Promise.all(batch.map(item => fetch(item.url).then(res => res.json())));
-
-            details.forEach(p => {
-                p.region = regionFromId(p.id);
-                allPokemonData.push(p);
-            });
-
-            appendPokemonList(details);
-        }
-    } catch (error) {
-        console.error('Error fetching PokAcmon data:', error);
-    }
+    // Load the first page only; more pages load on scroll
+    await fetchNextPage();
 }
-
 function appendPokemonList(pokemonList) {
     const frag = document.createDocumentFragment();
     pokemonList.forEach(pokemon => {
@@ -371,4 +357,50 @@ function setupBackToTop() {
 }
 
 
+
+
+async function fetchNextPage() {
+    if (isLoading || reachedEnd || !nextPageUrl) return;
+    isLoading = true;
+    showLoading(true);
+    try {
+        const response = await fetch(nextPageUrl);
+        const data = await response.json();
+        nextPageUrl = data.next;
+        if (!nextPageUrl) reachedEnd = true;
+
+        const details = await Promise.all(
+            data.results.map(item => fetch(item.url).then(res => res.json()))
+        );
+
+        details.forEach(p => {
+            p.region = regionFromId(p.id);
+            allPokemonData.push(p);
+        });
+
+        appendPokemonList(details);
+    } catch (e) {
+        console.error('Error fetching page:', e);
+    } finally {
+        isLoading = false;
+        showLoading(false);
+    }
+}
+
+function showLoading(show) {
+    const el = document.getElementById("loading-indicator");
+    if (!el) return;
+    if (show) el.classList.add("active"); else el.classList.remove("active");
+}
+
+function setupInfiniteScroll() {
+    const el = document.getElementById('loading-indicator');
+    if (!el) return;
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) fetchNextPage();
+        });
+    }, { rootMargin: '200px' });
+    io.observe(el);
+}
 
