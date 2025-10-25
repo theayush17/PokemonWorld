@@ -110,65 +110,53 @@ function applyFiltersAndRender() {
     toggleClearButton();
 }
 
+function regionFromId(id) {
+    if (id >= 1 && id <= 151) return 'kanto';
+    if (id <= 251) return 'johto';
+    if (id <= 386) return 'hoenn';
+    if (id <= 493) return 'sinnoh';
+    if (id <= 649) return 'unova';
+    if (id <= 721) return 'kalos';
+    if (id <= 809) return 'alola';
+    if (id <= 905) return 'galar';
+    return 'paldea';
+}
+
 async function fetchPokemonData() {
     try {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
         const data = await response.json();
-        const pokemonPromises = data.results.map(pokemon => fetch(pokemon.url).then(res => res.json()));
-        allPokemonData = await Promise.all(pokemonPromises);
-        
-        // Fetch species data for region information
-        const speciesPromises = allPokemonData.map(pokemon => fetch(pokemon.species.url).then(res => res.json()));
-        const speciesData = await Promise.all(speciesPromises);
 
-        for (let i = 0; i < allPokemonData.length; i++) {
-            const generationName = speciesData[i].generation.name;
-            let region = 'unknown';
-            switch (generationName) {
-                case 'generation-i':
-                    region = 'kanto';
-                    break;
-                case 'generation-ii':
-                    region = 'johto';
-                    break;
-                case 'generation-iii':
-                    region = 'hoenn';
-                    break;
-                case 'generation-iv':
-                    region = 'sinnoh';
-                    break;
-                case 'generation-v':
-                    region = 'unova';
-                    break;
-                case 'generation-vi':
-                    region = 'kalos';
-                    break;
-                case 'generation-vii':
-                    region = 'alola';
-                    break;
-                case 'generation-viii':
-                    region = 'galar';
-                    break;
-                case 'generation-ix':
-                    region = 'paldea';
-                    break;
-            }
-            allPokemonData[i].region = region;
+        const batchSize = 50;
+        for (let i = 0; i < data.results.length; i += batchSize) {
+            const batch = data.results.slice(i, i + batchSize);
+            const details = await Promise.all(batch.map(item => fetch(item.url).then(res => res.json())));
+
+            details.forEach(p => {
+                p.region = regionFromId(p.id);
+                allPokemonData.push(p);
+            });
+
+            appendPokemonList(details);
         }
-
-        displayPokemon(allPokemonData);
     } catch (error) {
-        console.error('Error fetching Pokémon data:', error);
+        console.error('Error fetching PokAcmon data:', error);
     }
 }
 
+function appendPokemonList(pokemonList) {
+    const frag = document.createDocumentFragment();
+    pokemonList.forEach(pokemon => {
+        const card = createPokemonCard(pokemon);
+        frag.appendChild(card);
+    });
+    pokemonCardsContainer.appendChild(frag);
+    addCardEventListeners();
+    if (searchInput.value) applySearch();
+}
 function displayPokemon(pokemonData) {
     pokemonCardsContainer.innerHTML = '';
-    pokemonData.forEach(pokemon => {
-        const card = createPokemonCard(pokemon);
-        pokemonCardsContainer.appendChild(card);
-    });
-    addCardEventListeners();
+    appendPokemonList(pokemonData);
 }
 
 function createPokemonCard(pokemon) {
@@ -183,8 +171,9 @@ function createPokemonCard(pokemon) {
     card.dataset.moves = pokemon.moves.slice(0, 5).map(m => m.move.name).join(', ');
     card.dataset.abilities = pokemon.abilities.map(a => a.ability.name).join(', ');
     card.dataset.stats = pokemon.stats.map(s => `${s.stat.name}: ${s.base_stat}`).join(', ');
-    const image = pokemon.sprites.other['official-artwork'].front_default ? pokemon.sprites.other['official-artwork'].front_default : 'img/pokemon-icon.png';
-    card.dataset.image = image;
+    const gridImage = pokemon.sprites.front_default || (pokemon.sprites.other && pokemon.sprites.other['official-artwork'] ? pokemon.sprites.other['official-artwork'].front_default : null) || 'img/pokemon-icon.png';
+    // Use higher-res artwork for popup if available, otherwise fall back to grid image
+    card.dataset.image = (pokemon.sprites.other && pokemon.sprites.other['official-artwork'] ? pokemon.sprites.other['official-artwork'].front_default : null) || gridImage;
     const cry = pokemon.cries.latest ? pokemon.cries.latest : '';
     card.dataset.cry = cry;
     card.dataset.evolutionChain = pokemon.species.url;
@@ -192,7 +181,7 @@ function createPokemonCard(pokemon) {
     card.dataset.shinyImage = shinyImage;
 
     card.innerHTML = `
-        <img src="${image}" alt="${pokemon.name}">
+        <img loading="lazy" src="${gridImage}" alt="${pokemon.name}">
         <h3>${pokemon.name}</h3>
         <h4>#${String(pokemon.id).padStart(3, '0')} <br> ${card.dataset.type.toUpperCase()}</h4>
     `;
@@ -213,10 +202,17 @@ function applySearch() {
     });
 }
 
-searchInput.addEventListener("input", applySearch);
+// Debounce search input for smoother typing
+let __searchTimer;
+searchInput.addEventListener("input", () => {
+  clearTimeout(__searchTimer);
+  __searchTimer = setTimeout(applySearch, 150);
+});
 
 function addCardEventListeners() {
     document.querySelectorAll('.pokemon-card').forEach(card => {
+        if (card.dataset.listenerAttached === '1') return;
+        card.dataset.listenerAttached = '1';
         card.addEventListener('click', function() {
             const pokemonName = card.dataset.name;
             const pokemonHeight = card.dataset.height;
@@ -369,3 +365,4 @@ function setupBackToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
