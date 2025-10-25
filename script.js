@@ -181,7 +181,7 @@ function createPokemonCard(pokemon) {
     card.dataset.shinyImage = shinyImage;
 
     card.innerHTML = `
-        <img loading="lazy" src="${gridImage}" alt="${pokemon.name}">
+        <div class="card-image"><img loading="lazy" src="${gridImage}" alt="${pokemon.name}"></div>
         <h3>${pokemon.name}</h3>
         <h4>#${String(pokemon.id).padStart(3, '0')} <br> ${card.dataset.type.toUpperCase()}</h4>
     `;
@@ -365,4 +365,6 @@ function setupBackToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+
 
